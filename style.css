@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	color: #fff;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: rgb(40, 126, 160);
+}
+
+h1 {
+	color: #fff;
+}
+
+input {
+	color: rgb(0, 0, 0, 0.5);
+	padding: 10px;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: rgb(18, 93, 155);
+}
+
+.login_box {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.game_box {
+	display: none;
+}
+
+.nameInput {
+	border-radius: 5px;
+	border: none;
+	margin: 15px;
+}
+
+.btn {
+	border: none;
+	background-color: rgb(40, 126, 160);
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.btn:hover {
+	background-color: rgb(86, 133, 151);
+}
+
+p {
+	margin-bottom: 10px;
+}
+
+.game_box {
+	padding: 20px;
+}
+.ballBox {
+	position: relative;
+	width: 180px;
+	height: 200px;
+	background-color: rgb(40, 126, 160);
+	margin-bottom: 20px;
+	border-radius: 8px;
+}
+.levels {
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.spot_start {
+	display: flex;
+	justify-content: space-between;
+}
+
+.ball {
+	position: absolute;
+	padding: 10px;
+	border-radius: 50%;
+	background-color: rgb(187, 20, 20);
+	cursor: pointer;
+}
+
+.selected_level {
+	background-color: rgb(41, 39, 158);
+}
