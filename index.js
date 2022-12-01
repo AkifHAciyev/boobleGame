@@ -30,7 +30,7 @@ btn_start.addEventListener('click', () => {
 function clickBubble(item) {
 	item.remove();
 
-	if (Btn_easy.classList.contains('selected_level')) {
+	if (Btn_easy.classList.contains('selected_level') || Btn_start.classList.contains('selected_level')) {
 		score += 1;
 	} else if (Btn_medium.classList.contains('selected_level')) {
 		score += 2;
@@ -55,14 +55,26 @@ function bubble(time) {
 		newBall.style.top = randomHeight + 'px';
 
 		if (document.querySelectorAll('.ball').length == 50) {
-			player_Highscore.innerHTML = `${score}`;
 			clearInterval(show_bubble);
-
 			alert(`Game Over\nYour Score:${score}`);
-			localStorageScore();
-			stoppedGame();
+			localScore();
+			ballBox.innerHTML = '';
+
+			console.log(player_Highscore.innerHTML);
+			stopGame();
+			score = 0;
 		}
 	}, time);
+}
+
+function localScore() {
+	if (Number(player_Highscore.innerHTML) < score) {
+		localStorage.setItem(player_Highscore.innerHTML, score);
+		player_Highscore.innerText = localStorage.getItem(score);
+	} else {
+		localStorage.setItem(player_Highscore.innerHTML, score);
+		player_Highscore.innerText = localStorage.getItem(player_Highscore.innerHTML);
+	}
 }
 
 function selectedLevel() {
@@ -75,8 +87,14 @@ function selectedLevel() {
 	});
 }
 
+function stopGame() {
+	clearInterval(show_bubble);
+	player_Highscore.innerText = score;
+}
+
 Btn_start.addEventListener('click', () => {
 	bubble(1000);
+	selectedLevel();
 });
 
 Btn_easy.addEventListener('click', () => {
@@ -91,5 +109,10 @@ Btn_medium.addEventListener('click', () => {
 
 Btn_hard.addEventListener('click', () => {
 	bubble(250);
+	selectedLevel();
+});
+
+Btn_stop.addEventListener('click', () => {
+	stopGame();
 	selectedLevel();
 });
