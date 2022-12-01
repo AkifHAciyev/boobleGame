@@ -29,7 +29,7 @@ btn_start.addEventListener('click', () => {
 
 function clickBubble(item) {
 	item.remove();
-
+	new Audio('bubble-sound.wav').play();
 	if (Btn_easy.classList.contains('selected_level') || Btn_start.classList.contains('selected_level')) {
 		score += 1;
 	} else if (Btn_medium.classList.contains('selected_level')) {
@@ -42,6 +42,7 @@ function clickBubble(item) {
 
 function bubble(time) {
 	clearInterval(show_bubble);
+	player_Highscore.innerText = window.localStorage.getItem('player_Highscore');
 	show_bubble = setInterval(() => {
 		let newBall = document.createElement('span');
 		newBall.classList.add('ball');
@@ -59,21 +60,17 @@ function bubble(time) {
 			alert(`Game Over\nYour Score:${score}`);
 			localScore();
 			ballBox.innerHTML = '';
-
-			console.log(player_Highscore.innerHTML);
 			stopGame();
+			player_Highscore.innerText = window.localStorage.getItem('player_Highscore');
 			score = 0;
 		}
 	}, time);
 }
 
 function localScore() {
-	if (Number(player_Highscore.innerHTML) < score) {
-		localStorage.setItem(player_Highscore.innerHTML, score);
-		player_Highscore.innerText = localStorage.getItem(score);
-	} else {
-		localStorage.setItem(player_Highscore.innerHTML, score);
-		player_Highscore.innerText = localStorage.getItem(player_Highscore.innerHTML);
+	if (+player_Highscore.innerHTML < +player_score.innerHTML) {
+		window.localStorage.setItem('player_Highscore', player_score.innerText);
+		player_Highscore.innerText = player_score.innerText;
 	}
 }
 
